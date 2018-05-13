@@ -608,8 +608,8 @@ CHARACTERSET=###ORACLE_CHARACTERSET###
 # Default value : None
 # Mandatory     : NO
 #-----------------------------------------------------------------------------
-#INITPARAMS="memory_target=0,sga_target=500,pga_aggregate_target=100"
-INITPARAMS="db_recovery_file_dest=/opt/app/oracle/oradata/fast_recovery_area,audit_trail=none,audit_sys_operations=false"
+#下行为修复bug添加
+INITPARAMS="java_jit_enabled=false"
 #-----------------------------------------------------------------------------
 # Name          : SAMPLESCHEMA
 # Datatype      : Boolean
@@ -627,7 +627,7 @@ INITPARAMS="db_recovery_file_dest=/opt/app/oracle/oradata/fast_recovery_area,aud
 # Default value : None
 # Mandatory     : NO
 #-----------------------------------------------------------------------------
-#MEMORYPERCENTAGE = "40"
+MEMORYPERCENTAGE = "70"
 
 #-----------------------------------------------------------------------------
 # Name          : DATABASETYPE
@@ -657,7 +657,7 @@ AUTOMATICMEMORYMANAGEMENT=TRUE
 # Default value :
 # Mandatory     : NO
 #-----------------------------------------------------------------------------
-TOTALMEMORY = ###ORACLE_TOTALMEMORY###
+#TOTALMEMORY = ###ORACLE_TOTALMEMORY###
 
 
 #-----------------------*** End of CREATEDATABASE section ***------------------------
