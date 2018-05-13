@@ -5,8 +5,12 @@
 #THis is the dockerfile that was imitated from oracle/docker-images
 #
 #HOW TO BUILD THIS IMAGE
-#	$ docker build -t oracle/database:11.2.0.4-ee .
+#	$ docker build -t oracle_11.2.0.4 .
+#	$ docker run -d oracle_database
 
+##所有格式均已转换成unix
+##需将数据库安装包放在dockerfile同一路径下,名字如INSTALL_FILE
+##国家字符集和数据库字符集，数据库SID可以自己定义，内存设置在dbca.rsp中定义
 FROM oraclelinux:7-slim
 
 MAINTAINER Thygee
@@ -18,16 +22,12 @@ MAINTAINER Thygee
 #INSTALL_DB_SOFTWARE构建成镜像
 ENV ORACLE_BASE=/opt/app/oracle \
 	ORACLE_HOME=/opt/app/oracle/product/11.2.0/dbhome_1 \
-
-	INSTALL_FILE_1="p13390677_112040_Linux-x86-64_1of7.zip"
-	INSTALL_FILE_2="p13390677_112040_Linux-x86-64_2of7.zip"
-
-	INSTALL_RSP="db_inst.rsp"
-
-	INSTALL_DBCA_RSP="dbca.rsp"
-
-	INSTALL_DB_SOFTWARE="install_db_software.sh"
-	RUN_OR_INSTALL_ORACLE="run_or_install_oracle"
+	INSTALL_FILE_1="p13390677_112040_Linux-x86-64_1of7.zip" \
+	INSTALL_FILE_2="p13390677_112040_Linux-x86-64_2of7.zip" \
+	INSTALL_RSP="db_inst.rsp" \
+	INSTALL_DBCA_RSP="dbca.rsp" \
+	INSTALL_DB_SOFTWARE="install_db_software.sh" \
+	RUN_OR_INSTALL_ORACLE="run_or_install_oracle.sh"
 
 ENV INSTALL_DIR=$ORACLE_BASE/install \
     PATH=$ORACLE_HOME/bin:$ORACLE_HOME/OPatch/:/usr/sbin:$PATH \
